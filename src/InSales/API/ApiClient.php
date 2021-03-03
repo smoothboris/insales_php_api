@@ -119,9 +119,23 @@ class ApiClient
      * @param string $password Пароль
      * @param string $hostName Адрес магазина
      */
-    public function __construct(string $identity, string $password, string $hostName)
+    public function __construct(string $identity, string $password = '', string $hostName = '')
     {
         $this->client = new HttpClient($identity, $password, $hostName);
+    }
+
+    public function setPassword(string $password) : self
+    {
+        $this->client->setPassword($password);
+
+        return $this;
+    }
+
+    public function setHostName(string $hostName) : self
+    {
+        $this->client->setHostName($hostName);
+
+        return $this;
     }
 
     /**

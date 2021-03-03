@@ -19,6 +19,10 @@ class Client
 
     private $baseUrl;
     private $hostName;
+    private $identity;
+    private $password;
+    private $scheme;
+    private $domain;
 
     /**
      * Инициализация Клиента
@@ -31,8 +35,29 @@ class Client
         $scheme = parse_url($hostName, PHP_URL_SCHEME) ?: 'http';
         $hostName = str_ireplace($scheme . '://', '', $hostName);
 
+        $this->identity = $identity;
+        $this->password = $password;
+        $this->scheme = $scheme;
+        $this->domain = $hostName;
         $this->hostName = $scheme . '://' . $hostName;
-        $this->baseUrl = $scheme . '://' . $identity . ':' . $password . '@' . $hostName;
+        $this->baseUrl = $this->buildBaseUrl();
+    }
+
+    private function buildBaseUrl()
+    {
+        return $this->scheme . '://' . $this->identity . ':' . $this->password . '@' . $this->domain;
+    }
+
+    public function setHostName($hostName)
+    {
+        $this->hostName = $hostName;
+        $this->baseUrl = $this->buildBaseUrl();
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+        $this->baseUrl = $this->buildBaseUrl();
     }
 
     /**
