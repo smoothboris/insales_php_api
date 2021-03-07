@@ -33,6 +33,7 @@ use InSales\API\Traits\{Account,
     Property,
     PaymentGateway,
     PropertyCharacteristic,
+    PickUpSource,
     Review,
     Similar,
     StockCurrency,
@@ -64,7 +65,7 @@ class ApiClient
         Review,
         Similar, StockCurrency, Supplementary,
         Variant, VariantField, VariantFieldValue,
-        WebHook,
+        WebHook, PickUpSource,
         Testing,
         PaymentNotify;
 
@@ -108,6 +109,7 @@ class ApiClient
     const API_URL_VARIANT_FIELD = '/admin/variant_fields';
     const API_URL_VARIANT_FIELD_VALUE = '/admin/products/{slug}/variant_field_values';
     const API_URL_WEBHOOK = '/admin/webhooks';
+    const API_URL_PICK_UP_SOURCE = '/admin/pick_up_sources';
     const PAYMENT_URL_NOTIFY = '/payments/external/server';
 
     /** @var HttpClient */
