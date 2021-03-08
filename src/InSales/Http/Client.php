@@ -32,7 +32,7 @@ class Client
      */
     public function __construct(string $identity, string $password, string $hostName)
     {
-        $scheme = parse_url($hostName, PHP_URL_SCHEME) ?: 'http';
+        $scheme = parse_url($hostName, PHP_URL_SCHEME) ?: 'https';
         $hostName = str_ireplace($scheme . '://', '', $hostName);
 
         $this->identity = $identity;
@@ -50,7 +50,7 @@ class Client
 
     public function setHostName($hostName)
     {
-        $this->hostName = $hostName;
+        $this->domain = $hostName;
         $this->baseUrl = $this->buildBaseUrl();
     }
 
